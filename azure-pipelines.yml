@@ -4,7 +4,7 @@ trigger:
       - main  # Trigger on pushes to the main branch
 
 pool:
-  vmImage: 'SelfHostedAgentPool'  # Use the latest Windows VM
+  name: 'SelfHostedAgentPool'  # Make sure this matches your self-hosted pool name
 
 variables:
   buildConfiguration: 'Release'
@@ -63,7 +63,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'  # Modify the path to target your project
+    projects: '**/*.csproj'  # Modify the path if necessary
     arguments: '--configuration $(buildConfiguration) --no-restore'
   displayName: 'Build .NET MAUI Project'
 
