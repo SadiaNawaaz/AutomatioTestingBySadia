@@ -4,14 +4,12 @@ trigger:
       - main
 
 pool:
-  vmImage: 'windows-latest'
-
+  name: 'SelfHostedAgentPool' # This should be the name of your self-hosted agent pool
 
 steps:
   # Step 1: Checkout the code
   - checkout: self
     persistCredentials: true
-
 
   # Step 2: Cache .NET dependencies (NuGet packages)
   - task: Cache@2
@@ -29,48 +27,53 @@ steps:
       version: '8.0.x'
     displayName: 'Setup .NET SDK'
 
-  # Step 4: Install MAUI workload
-  - script: dotnet workload install maui
-    displayName: 'Install MAUI workload'
-
-  # Step 5: Cache Node.js dependencies (npm packages)
-  - task: Cache@2
-    inputs:
-      key: 'npm | "$(Agent.OS)" | **/package-lock.json'
-      restoreKeys: |
-        npm | "$(Agent.OS)"
-      path: $(Agent.ToolsDirectory)/npm
-    displayName: 'Cache Node.js modules'
-
-  # Step 6: Install Node.js
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '18.x'
-    displayName: 'Install Node.js'
-
-  # Step 7: Install Appium via npm
-  - script: npm install -g appium
-    displayName: 'Install Appium'
-
-  # Step 8: Install Appium Windows Driver
-  - script: appium driver install --source=npm appium-windows-driver
-    displayName: 'Install Appium Windows Driver'
-
-  # Step 9: Install WinAppDriver for Windows UI automation
+  # Step 4: Install MAUI workload if not already installed
   - powershell: |
-      Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
-      Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
-    displayName: 'Install WinAppDriver'
+      if (-not (dotnet workload list | Select-String 'maui')) {
+        dotnet workload install maui
+      } else {
+        Write-Host "MAUI workload is already installed."
+      }
+    displayName: 'Check and Install MAUI workload'
 
-  # Step 10: Build the .NET MAUI Project for Windows
+  # Step 5: Check if Node.js is installed
+  - powershell: |
+      if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+        Write-Host "Node.js is not installed."
+      } else {
+        Write-Host "Node.js is already installed."
+      }
+    displayName: 'Check Node.js Installation'
+
+  # Step 6: Check if Appium is installed
+  - powershell: |
+      if (-not (Get-Command appium -ErrorAction SilentlyContinue)) {
+        Write-Host "Appium is not installed."
+      } else {
+        Write-Host "Appium is already installed."
+      }
+    displayName: 'Check Appium Installation'
+
+  # Step 7: Check if WinAppDriver is installed
+  - powershell: |
+      if (Test-Path "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe") {
+        Write-Host "WinAppDriver is already installed."
+      } else {
+        Write-Host "WinAppDriver is not installed. Proceeding to install..."
+        Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
+      }
+    displayName: 'Check and Install WinAppDriver'
+
+  # Step 8: Build the .NET MAUI Project for Windows
   - script: dotnet build Yaml/Yaml.csproj -c Release -f:net8.0-windows10.0.19041.0
     displayName: 'Build .NET MAUI Project'
 
-  # Step 11: Run specific test cases (use filter to run fast tests only)
+  # Step 9: Run specific test cases (use filter to run fast tests only)
   - script: dotnet test UITests.Windows/UITests.Windows.csproj --logger trx
     displayName: 'Run Specific Tests'
 
-  # Step 12: Publish test results
+  # Step 10: Publish test results
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'VSTest'
