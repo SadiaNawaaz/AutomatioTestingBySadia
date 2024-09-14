@@ -61,9 +61,8 @@ steps:
     }
   displayName: 'Check and Update Appium Windows Driver'
 
-# Step 8: Install WinAppDriver for Windows UI automation
 
-# Step 9: Build the .NET MAUI project
+# Step 8: Build the .NET MAUI project
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
@@ -71,7 +70,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) --no-restore'
   displayName: 'Build .NET MAUI Project'
 
-# Step 10: Run NUnit Tests
+# Step 9: Run NUnit Tests
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
@@ -79,7 +78,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) --no-build --logger trx'
   displayName: 'Run NUnit Tests'
 
-# Step 11: Publish test results to Azure Pipelines
+# Step 10: Publish test results to Azure Pipelines
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: '**/TestResults/*.trx'
