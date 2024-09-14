@@ -12,35 +12,35 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Yaml
-build_property.ProjectDir = F:\YamlsTestingProject\YamlTesting\Yaml\
+build_property.ProjectDir = F:\YamlsTestingProject\AutomatioTestingBySadia\Yaml\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[F:/YamlsTestingProject/YamlTesting/Yaml/App.xaml]
+[F:/YamlsTestingProject/AutomatioTestingBySadia/Yaml/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Yaml.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[F:/YamlsTestingProject/YamlTesting/Yaml/AppShell.xaml]
+[F:/YamlsTestingProject/AutomatioTestingBySadia/Yaml/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Yaml.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[F:/YamlsTestingProject/YamlTesting/Yaml/MainPage.xaml]
+[F:/YamlsTestingProject/AutomatioTestingBySadia/Yaml/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Yaml.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[F:/YamlsTestingProject/YamlTesting/Yaml/Resources/Styles/Colors.xaml]
+[F:/YamlsTestingProject/AutomatioTestingBySadia/Yaml/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Yaml.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[F:/YamlsTestingProject/YamlTesting/Yaml/Resources/Styles/Styles.xaml]
+[F:/YamlsTestingProject/AutomatioTestingBySadia/Yaml/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Yaml.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml

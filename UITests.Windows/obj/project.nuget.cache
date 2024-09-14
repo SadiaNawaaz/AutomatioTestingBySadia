@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eqKidxPArUo=",
+  "dgSpecHash": "k2pNYrwfnvQ=",
   "success": true,
-  "projectFilePath": "F:\\YamlsTestingProject\\YamlTesting\\UITests.Windows\\UITests.Windows.csproj",
+  "projectFilePath": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\UITests.Windows.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Z B O O K\\.nuget\\packages\\appium.webdriver\\5.0.0-rc.5\\appium.webdriver.5.0.0-rc.5.nupkg.sha512",
     "C:\\Users\\Z B O O K\\.nuget\\packages\\microsoft.codecoverage\\17.9.0\\microsoft.codecoverage.17.9.0.nupkg.sha512",

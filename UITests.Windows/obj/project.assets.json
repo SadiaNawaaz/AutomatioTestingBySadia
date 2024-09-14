@@ -935,11 +935,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\YamlsTestingProject\\YamlTesting\\UITests.Windows\\UITests.Windows.csproj",
+      "projectUniqueName": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\UITests.Windows.csproj",
       "projectName": "UITests.Windows",
-      "projectPath": "F:\\YamlsTestingProject\\YamlTesting\\UITests.Windows\\UITests.Windows.csproj",
+      "projectPath": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\UITests.Windows.csproj",
       "packagesPath": "C:\\Users\\Z B O O K\\.nuget\\packages\\",
-      "outputPath": "F:\\YamlsTestingProject\\YamlTesting\\UITests.Windows\\obj\\",
+      "outputPath": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
