@@ -4,7 +4,7 @@ trigger:
       - main  # Trigger on pushes to the main branch
 
 pool:
-  vmImage: 'windows-latest'  # Use the latest Windows VM
+  vmImage: 'SelfHostedAgentPool'  # Use the latest Windows VM
 
 variables:
   buildConfiguration: 'Release'
