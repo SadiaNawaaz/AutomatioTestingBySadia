@@ -1,76 +1,78 @@
 trigger:
   branches:
     include:
-      - main  # Trigger on pushes to the main branch
+      - main
 
 pool:
-  name: 'SelfHostedAgentPool'  # Make sure this matches your self-hosted pool name
+  vmImage: 'windows-latest'
 
-variables:
-  buildConfiguration: 'Release'
 
 steps:
-
-# Step 1: Checkout the code from your GitHub repository
-- checkout: self
-  displayName: 'Checkout Code'
-
-# Step 2: Cache NuGet packages to speed up builds
-- task: Cache@2
-  inputs:
-    key: 'nuget | "$(Agent.OS)" | **/*.csproj'
-    restoreKeys: |
-      nuget | "$(Agent.OS)"
-    path: $(Pipeline.Workspace)/.nuget/packages
-    cacheHitVar: NUGET_CACHE_RESTORED
-  displayName: 'Cache NuGet Packages'
-
-# Step 3: Setup .NET SDK
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.0.x'  # Use .NET 8.x SDK
-  displayName: 'Setup .NET SDK'
-
-# Step 4: Install .NET MAUI workloads
-- script: |
-    dotnet workload install maui
-  displayName: 'Install .NET MAUI Workload'
-
-# Step 5: Install Node.js (since you're using npm/Appium)
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.x'
-  displayName: 'Install Node.js'
-
-# Step 6: Install Appium globally using npm
-- script: |
-    npm install -g appium
-  displayName: 'Install Appium'
+  # Step 1: Checkout the code
+  - checkout: self
+    persistCredentials: true
 
 
+  # Step 2: Cache .NET dependencies (NuGet packages)
+  - task: Cache@2
+    inputs:
+      key: 'nuget | "$(Agent.OS)" | **/*.csproj'
+      restoreKeys: |
+        nuget | "$(Agent.OS)"
+      path: $(Agent.ToolsDirectory)/nuget
+    displayName: 'Cache NuGet packages'
 
+  # Step 3: Setup .NET SDK
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.x'
+    displayName: 'Setup .NET SDK'
 
-# Step 7: Build the .NET MAUI project
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'  # Modify the path if necessary
-    arguments: '--configuration $(buildConfiguration) --no-restore'
-  displayName: 'Build .NET MAUI Project'
+  # Step 4: Install MAUI workload
+  - script: dotnet workload install maui
+    displayName: 'Install MAUI workload'
 
-# Step 8: Run NUnit Tests
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '**/*.Test.csproj'  # Replace with the path to your NUnit test project
-    arguments: '--configuration $(buildConfiguration) --no-build --logger trx'
-  displayName: 'Run NUnit Tests'
+  # Step 5: Cache Node.js dependencies (npm packages)
+  - task: Cache@2
+    inputs:
+      key: 'npm | "$(Agent.OS)" | **/package-lock.json'
+      restoreKeys: |
+        npm | "$(Agent.OS)"
+      path: $(Agent.ToolsDirectory)/npm
+    displayName: 'Cache Node.js modules'
 
-# Step 9: Publish test results to Azure Pipelines
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: '**/TestResults/*.trx'
-    testRunTitle: 'NUnit Test Results'
-    failTaskOnFailedTests: true
-  displayName: 'Publish Test Results'
+  # Step 6: Install Node.js
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+
+  # Step 7: Install Appium via npm
+  - script: npm install -g appium
+    displayName: 'Install Appium'
+
+  # Step 8: Install Appium Windows Driver
+  - script: appium driver install --source=npm appium-windows-driver
+    displayName: 'Install Appium Windows Driver'
+
+  # Step 9: Install WinAppDriver for Windows UI automation
+  - powershell: |
+      Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
+      Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
+    displayName: 'Install WinAppDriver'
+
+  # Step 10: Build the .NET MAUI Project for Windows
+  - script: dotnet build Yaml/Yaml.csproj -c Release -f:net8.0-windows10.0.19041.0
+    displayName: 'Build .NET MAUI Project'
+
+  # Step 11: Run specific test cases (use filter to run fast tests only)
+  - script: dotnet test UITests.Windows/UITests.Windows.csproj --logger trx
+    displayName: 'Run Specific Tests'
+
+  # Step 12: Publish test results
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'VSTest'
+      testResultsFiles: '**/TestResults/*.trx'
+    displayName: 'Publish Test Results'
