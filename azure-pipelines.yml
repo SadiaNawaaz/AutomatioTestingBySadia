@@ -48,21 +48,10 @@ steps:
     npm install -g appium
   displayName: 'Install Appium'
 
-# Step 7: Check if Appium Windows Driver is installed and update only if necessary
-- powershell: |
-    $installedDrivers = appium driver list --installed
-    if ($installedDrivers -match 'windows@') {
-      Write-Host "Appium Windows Driver is already installed."
-      Write-Host "Updating Appium Windows Driver..."
-      appium driver update windows  # Optionally update the driver
-    } else {
-      Write-Host "Installing Appium Windows Driver..."
-      appium driver install --source=npm appium-windows-driver
-    }
-  displayName: 'Check and Update Appium Windows Driver'
 
 
-# Step 8: Build the .NET MAUI project
+
+# Step 7: Build the .NET MAUI project
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
@@ -70,7 +59,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) --no-restore'
   displayName: 'Build .NET MAUI Project'
 
-# Step 9: Run NUnit Tests
+# Step 8: Run NUnit Tests
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
@@ -78,7 +67,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) --no-build --logger trx'
   displayName: 'Run NUnit Tests'
 
-# Step 10: Publish test results to Azure Pipelines
+# Step 9: Publish test results to Azure Pipelines
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: '**/TestResults/*.trx'
