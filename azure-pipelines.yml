@@ -65,9 +65,9 @@ steps:
       }
     displayName: 'Check and Install WinAppDriver'
 
-  # Step 8: Build the .NET MAUI Project for Windows
-  - script: dotnet build Yaml/Yaml.csproj -c Release -f:net8.0-windows10.0.19041.0
-    displayName: 'Build .NET MAUI Project'
+  # Step 8: Publish the .NET MAUI Project for Windows to generate an .exe
+  - script: dotnet publish Yaml/Yaml.csproj -c Release -f:net8.0-windows10.0.19041.0 -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Publish .NET MAUI Project'
 
   # Step 9: Run specific test cases (use filter to run fast tests only)
   - script: dotnet test UITests.Windows/UITests.Windows.csproj --logger trx
