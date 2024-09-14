@@ -54,7 +54,7 @@ public class AppiumSetup
         string projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", ".."));
 
         // Combine the root directory with the relative path to the executable
-        string appPath = Path.Combine(projectRoot, "Yaml", "bin", "Debug", "net8.0-windows10.0.19041.0", "win10-x64", "Yaml.exe");
+        string appPath = Path.Combine(projectRoot, "Yaml", "bin", "Release", "net8.0-windows10.0.19041.0", "win10-x64", "Yaml.exe");
 
 
         Console.WriteLine($"Application Path: {appPath}");
