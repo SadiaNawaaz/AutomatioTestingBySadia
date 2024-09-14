@@ -62,10 +62,6 @@ steps:
   displayName: 'Check and Update Appium Windows Driver'
 
 # Step 8: Install WinAppDriver for Windows UI automation
-- powershell: |
-    Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
-    Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
-  displayName: 'Install WinAppDriver'
 
 # Step 9: Build the .NET MAUI project
 - task: DotNetCoreCLI@2
