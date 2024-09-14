@@ -37,27 +37,46 @@ steps:
     dotnet workload install maui
   displayName: 'Install .NET MAUI Workload'
 
-# Step 5: Install Node.js (since you're using npm/Appium)
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.x'
-  displayName: 'Install Node.js'
-
-# Step 6: Install Appium globally using npm
-- script: |
-    npm install -g appium
-  displayName: 'Install Appium'
-
-# Step 7: Install Appium Windows Driver
-- script: |
-    appium driver install --source=npm appium-windows-driver
-  displayName: 'Install Appium Windows Driver'
-
-# Step 8: Install WinAppDriver for Windows UI automation
+# Step 5: Check if Node.js is installed and install if missing
 - powershell: |
-    Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
-    Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
-  displayName: 'Install WinAppDriver'
+    if (!(Get-Command node -ErrorAction SilentlyContinue)) {
+      Write-Host "Node.js is not installed. Installing..."
+      nvm install 18.x  # Replace with Node.js installer if not using NVM
+    } else {
+      Write-Host "Node.js is already installed."
+    }
+  displayName: 'Check and Install Node.js'
+
+# Step 6: Check if Appium is installed and install only if missing
+- powershell: |
+    if (!(Get-Command appium -ErrorAction SilentlyContinue)) {
+      npm install -g appium
+      Write-Host "Appium installed."
+    } else {
+      Write-Host "Appium is already installed."
+    }
+  displayName: 'Check and Install Appium'
+
+# Step 7: Check if Appium Windows Driver is installed and install only if missing
+- powershell: |
+    if (!(appium driver list --installed | Select-String "appium-windows-driver")) {
+      appium driver install --source=npm appium-windows-driver
+      Write-Host "Appium Windows Driver installed."
+    } else {
+      Write-Host "Appium Windows Driver is already installed."
+    }
+  displayName: 'Check and Install Appium Windows Driver'
+
+# Step 8: Check if WinAppDriver is installed and install only if missing
+- powershell: |
+    if (-Not (Test-Path "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe")) {
+      Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
+      Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
+      Write-Host "WinAppDriver installed."
+    } else {
+      Write-Host "WinAppDriver is already installed."
+    }
+  displayName: 'Check and Install WinAppDriver'
 
 # Step 9: Build the .NET MAUI project
 - task: DotNetCoreCLI@2
