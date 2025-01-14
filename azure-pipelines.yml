@@ -4,33 +4,65 @@ trigger:
       - main
 
 pool:
-  name: 'SelfHostedAgentPool'
+  name: 'SelfHostedAgentPool' # This should be the name of your self-hosted agent pool
 
 steps:
+  # Step 1: Checkout the code
   - checkout: self
     persistCredentials: true
 
+  # Step 2: Cache .NET dependencies (NuGet packages)
   - task: Cache@2
     inputs:
-      key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
-      restoreKeys: 'nuget | "$(Agent.OS)"'
-      path: $(NUGET_PACKAGES)
-    displayName: 'Cache NuGet Packages'
+      key: 'nuget | "$(Agent.OS)" | **/*.csproj'
+      restoreKeys: |
+        nuget | "$(Agent.OS)"
+      path: $(Agent.ToolsDirectory)/nuget
+    displayName: 'Cache NuGet packages'
 
+  # Step 3: Setup .NET SDK
   - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
       version: '8.0.x'
     displayName: 'Setup .NET SDK'
 
-  - script: dotnet publish Yaml/Yaml.csproj -c Release -f:net8.0-windows10.0.19041.0 -o $(Build.ArtifactStagingDirectory)
-    displayName: 'Publish .NET MAUI Project'
+  # Step 4: Install MAUI workload if not already installed
+  - powershell: |
+      if (-not (dotnet workload list | Select-String 'maui')) {
+        dotnet workload install maui
+      } else {
+        Write-Host "MAUI workload is already installed."
+      }
+    displayName: 'Check and Install MAUI workload'
 
+  # Steps to check installation of necessary tools (optional, remove if not needed)
+  - powershell: |
+      if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+        Write-Host "Node.js is not installed."
+      } else {
+        Write-Host "Node.js is already installed."
+      }
+    displayName: 'Check Node.js Installation'
+
+  - powershell: |
+      if (-not (Get-Command appium -ErrorAction SilentlyContinue)) {
+        Write-Host "Appium is not installed."
+      } else {
+        Write-Host "Appium is already installed."
+      }
+    displayName: 'Check Appium Installation'
+
+  - powershell: |
+      if (Test-Path "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe") {
+        Write-Host "WinAppDriver is already installed."
+      } else {
+        Write-Host "WinAppDriver is not installed. Proceeding to install..."
+        Invoke-WebRequest -Uri https://github.com/microsoft/WinAppDriver/releases/download/v1.2.1/WindowsApplicationDriver_1.2.1.msi -OutFile WinAppDriver.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/I WinAppDriver.msi /quiet'
+      }
+    displayName: 'Check and Install WinAppDriver'
+
+  # Step to run specific test cases
   - script: dotnet test UITests.Windows/UITests.Windows.csproj --logger trx
     displayName: 'Run Specific Tests'
-
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: 'VSTest'
-      testResultsFiles: '**/TestResults/*.trx'
-    displayName: 'Publish Test Results'
