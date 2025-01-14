@@ -3,28 +3,13 @@
   "WorkspaceRootPath": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{71372BA0-A1E8-4A5A-889A-B5D8C07EC5DF}|..\\UITests.Windows\\UITests.Windows.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\uitests.windows\\appiumsetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71372BA0-A1E8-4A5A-889A-B5D8C07EC5DF}|..\\UITests.Windows\\UITests.Windows.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\uitests.windows\\platformspecificsampletest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EB6A508-4D69-44ED-9A66-B7913B33A0E8}|Yaml.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\yaml\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EB6A508-4D69-44ED-9A66-B7913B33A0E8}|Yaml.csproj|solutionrelative:mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EB6A508-4D69-44ED-9A66-B7913B33A0E8}|Yaml.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\yaml\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EB6A508-4D69-44ED-9A66-B7913B33A0E8}|Yaml.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EB6A508-4D69-44ED-9A66-B7913B33A0E8}|Yaml.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\yaml\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7EB6A508-4D69-44ED-9A66-B7913B33A0E8}|Yaml.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79D5539D-86FA-4D13-883C-D84FB33E2781}|..\\UITests.Shared\\UITests.Shared.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\uitests.shared\\appiumserverhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{79D5539D-86FA-4D13-883C-D84FB33E2781}|..\\UITests.Shared\\UITests.Shared.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\uitests.shared\\mainpagetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{79D5539D-86FA-4D13-883C-D84FB33E2781}|..\\UITests.Shared\\UITests.Shared.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\uitests.shared\\basetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79D5539D-86FA-4D13-883C-D84FB33E2781}|..\\UITests.Shared\\UITests.Shared.csproj|f:\\yamlstestingproject\\automatiotestingbysadia\\uitests.shared\\appiumserverhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -159,73 +144,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AppiumSetup.cs",
-              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\AppiumSetup.cs",
-              "RelativeDocumentMoniker": "..\\UITests.Windows\\AppiumSetup.cs",
-              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\AppiumSetup.cs",
-              "RelativeToolTip": "..\\UITests.Windows\\AppiumSetup.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAD0AAAAIAAAAAAAAAA==",
+              "Title": "MainPageTests.cs",
+              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\MainPageTests.cs",
+              "RelativeDocumentMoniker": "..\\UITests.Shared\\MainPageTests.cs",
+              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\MainPageTests.cs",
+              "RelativeToolTip": "..\\UITests.Shared\\MainPageTests.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T12:46:07.041Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "MainPage.xaml.cs",
-              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\MainPage.xaml.cs",
-              "RelativeToolTip": "MainPage.xaml.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAAB8AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T15:08:12.646Z",
+              "WhenOpened": "2025-01-14T16:11:06.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MauiProgram.cs",
-              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\MauiProgram.cs",
-              "RelativeDocumentMoniker": "MauiProgram.cs",
-              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\MauiProgram.cs",
-              "RelativeToolTip": "MauiProgram.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T12:48:05.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\MainPage.xaml",
-              "RelativeDocumentMoniker": "MainPage.xaml",
-              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\Yaml\\MainPage.xaml",
-              "RelativeToolTip": "MainPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-14T12:48:04.381Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppiumServerHelper.cs",
-              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\AppiumServerHelper.cs",
-              "RelativeDocumentMoniker": "..\\UITests.Shared\\AppiumServerHelper.cs",
-              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\AppiumServerHelper.cs",
-              "RelativeToolTip": "..\\UITests.Shared\\AppiumServerHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T12:46:04.275Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "BaseTest.cs",
               "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\BaseTest.cs",
               "RelativeDocumentMoniker": "..\\UITests.Shared\\BaseTest.cs",
@@ -233,19 +164,20 @@
               "RelativeToolTip": "..\\UITests.Shared\\BaseTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T12:46:03.505Z"
+              "WhenOpened": "2025-01-14T16:11:04.718Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlatformSpecificSampleTest.cs",
-              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\PlatformSpecificSampleTest.cs",
-              "RelativeDocumentMoniker": "..\\UITests.Windows\\PlatformSpecificSampleTest.cs",
-              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Windows\\PlatformSpecificSampleTest.cs",
-              "RelativeToolTip": "..\\UITests.Windows\\PlatformSpecificSampleTest.cs",
+              "DocumentIndex": 2,
+              "Title": "AppiumServerHelper.cs",
+              "DocumentMoniker": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\AppiumServerHelper.cs",
+              "RelativeDocumentMoniker": "..\\UITests.Shared\\AppiumServerHelper.cs",
+              "ToolTip": "F:\\YamlsTestingProject\\AutomatioTestingBySadia\\UITests.Shared\\AppiumServerHelper.cs",
+              "RelativeToolTip": "..\\UITests.Shared\\AppiumServerHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T12:45:57.463Z",
+              "WhenOpened": "2025-01-14T16:11:03.553Z",
               "EditorCaption": ""
             }
           ]

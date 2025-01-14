@@ -11,13 +11,14 @@ namespace UITests;
 public class MainPageTests : BaseTest
 {
 	[Test]
-	public void AppLaunches()
+    [Description("Test Case ID: 1588")]
+    public void AppLaunches()
 	{
 		App.GetScreenshot().SaveAsFile($"{nameof(AppLaunches)}.png");
 	}
-
-	[Test]
-	public void ClickCounterTest1()
+    [Test]
+    [Description("Test Case ID: 1591")]
+    public void ClickCounterTest1()
 	{
 		
             // Arrange
@@ -44,6 +45,7 @@ public class MainPageTests : BaseTest
 
 
     [Test]
+    [Description("Test Case ID: 1589")]
     public void ClickCounterWelcomeTest()
         {
      
@@ -64,6 +66,7 @@ public class MainPageTests : BaseTest
         }
 
     [Test]
+    [Description("Test Case ID: 1590")]
     public void ClickCounterTest()
         {
         // Get the root path of the application dynamically
