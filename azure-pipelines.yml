@@ -63,6 +63,20 @@ steps:
       }
     displayName: 'Check and Install WinAppDriver'
 
-  # Step to run specific test cases
-  - script: dotnet test UITests.Windows/UITests.Windows.csproj --logger trx
-    displayName: 'Run Specific Tests'
+  # Step 5: Run specific test cases
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'test'
+      projects: 'UITests.Windows/UITests.Windows.csproj'
+      arguments: '--configuration $(buildConfiguration) --logger "trx;LogFileName=test_results.trx"'
+    displayName: 'Run Tests and Publish Results'
+
+  # Step 6: Publish test results
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'VSTest'
+      testResultsFiles: '**/*.trx'
+      searchFolder: '$(System.DefaultWorkingDirectory)'
+      failTaskOnFailedTests: true
+      testRunTitle: 'Automated Test Results'
+    displayName: 'Publish Test Results'
